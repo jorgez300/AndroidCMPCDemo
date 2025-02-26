@@ -15,3 +15,6 @@ object Setting
 @Serializable
 object Login
 
+@Serializable
+object Detail
+
