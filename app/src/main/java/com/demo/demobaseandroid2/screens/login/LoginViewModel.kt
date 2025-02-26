@@ -4,13 +4,31 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+
+
+data class LoginState(
+    val email: String? = "email",
+    val password: String? = "password",
+    val vip: Boolean = false,
+)
 
 class LoginViewModel : ViewModel() {
 
-    private val _email = MutableStateFlow<String>("")
-    val email: StateFlow<String> = _email.asStateFlow()
+    private val _uiState = MutableStateFlow<LoginState>(LoginState())
+    val uiState: StateFlow<LoginState> = _uiState.asStateFlow()
 
-    fun setEmail(it: String) {
-        _email.value = it
+    fun updateState(
+        email: String? = _uiState.value.email,
+        password: String? = _uiState.value.password,
+        vip: Boolean = _uiState.value.vip
+    ) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                email = email,
+                password = password,
+                vip = vip,
+            )
+        }
     }
 }
