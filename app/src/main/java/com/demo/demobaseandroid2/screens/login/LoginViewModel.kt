@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.update
 data class LoginState(
     val email: String? = "email",
     val password: String? = "password",
-    val vip: Boolean = false,
+    val vip: Boolean = true,
 )
 
 class LoginViewModel : ViewModel() {

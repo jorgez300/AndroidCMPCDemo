@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -49,27 +50,45 @@ fun Body(navigateTo: (Any) -> Unit, viewModel: LoginViewModel) {
 
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Botones(navigateTo, viewModel)
-        Spacer(modifier = Modifier.height(20.dp))
+
         Formulario(navigateTo, viewModel)
+        Spacer(modifier = Modifier.height(20.dp))
+        Etiquetas(navigateTo, viewModel)
+        Spacer(modifier = Modifier.height(20.dp))
+        Botones(navigateTo, viewModel)
+    }
+}
+
+@Composable
+fun Etiquetas(navigateTo: (Any) -> Unit, viewModel: LoginViewModel) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    Box(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = if (uiState.vip) Color.Yellow else Color.Green)
+                .padding(20.dp)
+            , horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = uiState.email.toString(), fontSize = 25.sp)
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(text = uiState.password.toString(), fontSize = 25.sp)
+        }
     }
 }
 
 @Composable
 fun Botones(navigateTo: (Any) -> Unit, viewModel: LoginViewModel) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
 
     Box(modifier = Modifier.fillMaxWidth()) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = Color.Red)
+                .padding(20.dp)
+            , horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = uiState.email.toString(), fontSize = 25.sp)
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(text = uiState.password.toString(), fontSize = 25.sp)
-
             Button(onClick = { navigateTo(Home) }) {
                 Text(text = "Navegar a la home")
             }
@@ -101,6 +120,11 @@ fun Formulario(navigateTo: (Any) -> Unit, viewModel: LoginViewModel) {
             TextField(
                 value = uiState.password.toString(),
                 onValueChange = { viewModel.updateState(password = it) })
+            Spacer(modifier = Modifier.height(20.dp))
+            Checkbox(
+                checked = uiState.vip,
+                onCheckedChange = { viewModel.updateState(vip = it) }
+            )
         }
     }
 
