@@ -23,14 +23,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.demo.demobaseandroid2.core.navigation.Detail
 import com.demo.demobaseandroid2.core.navigation.Home
 import com.demo.demobaseandroid2.core.navigation.Setting
 
 
 @Composable
-fun LoginScreen(navigateTo: (Any) -> Unit, loginViewModel: LoginViewModel) {
+fun LoginScreen(navigateTo: (Any) -> Unit, viewModel: LoginViewModel) {
 
-    Body(navigateTo, loginViewModel)
+    Body(navigateTo, viewModel)
 
 }
 
@@ -95,6 +96,10 @@ fun Botones(navigateTo: (Any) -> Unit, viewModel: LoginViewModel) {
 
             Button(onClick = { navigateTo(Setting) }) {
                 Text(text = "Navegar a la Setting")
+            }
+
+            Button(onClick = { navigateTo(Detail) }) {
+                Text(text = "Navegar a Detail")
             }
 
         }

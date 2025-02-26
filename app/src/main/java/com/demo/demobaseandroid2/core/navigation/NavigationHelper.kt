@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.demo.demobaseandroid2.screens.detail.DetailScreen
+import com.demo.demobaseandroid2.screens.detail.DetailViewModel
 import com.demo.demobaseandroid2.screens.home.HomeScreen
 import com.demo.demobaseandroid2.screens.login.LoginScreen
 import com.demo.demobaseandroid2.screens.login.LoginViewModel
@@ -22,7 +24,15 @@ fun NavigationHelper() {
         composable<Login> {
             LoginScreen(
                 navigateTo = { screen -> navigateTo(screen, navController) },
-                loginViewModel = LoginViewModel()
+                viewModel = LoginViewModel()
+            )
+
+        }
+
+        composable<Detail> {
+            DetailScreen(
+                navigateTo = { screen -> navigateTo(screen, navController) },
+                viewModel = DetailViewModel()
             )
 
         }
