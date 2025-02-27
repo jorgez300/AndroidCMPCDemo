@@ -1,6 +1,4 @@
-package com.demo.demobaseandroid2.data.entity
-
-//package com.demo.demobaseandroid2.data.entity
+package com.demo.demobaseandroid2.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
