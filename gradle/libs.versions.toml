@@ -8,7 +8,7 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.0"
 composeBom = "2024.04.01"
-room = "2.6.1" # Define la versión de Room
+room = "2.5.0" # Define la versión de Room
 roomVersion = "2.6.1"
 privacysandbox = "1.0.0-alpha11"
 
@@ -84,7 +84,7 @@ converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version = "1.9.20-1.0.14" } # Asegúrate de usar la vers
+ksp = { id = "com.google.devtools.ksp", version = "2.1.0-1.0.29" } # Asegúrate de usar la vers
 #/*Serialization*/
 jetbrainsKotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 #/*Serialization*/
