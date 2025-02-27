@@ -1,5 +1,6 @@
 package com.demo.demobaseandroid2.screens.login
 
+import android.app.Application
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,10 +20,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.demo.demobaseandroid2.core.navigation.Detail
 import com.demo.demobaseandroid2.core.navigation.Home
 import com.demo.demobaseandroid2.core.navigation.Setting
@@ -41,7 +44,12 @@ fun LoginScreen(navigateTo: (Any) -> Unit, viewModel: LoginViewModel) {
 @Composable
 fun LoginScreenPreview() {
 
-    Body({}, LoginViewModel())
+    // Body({}, LoginViewModel())
+    val context = LocalContext.current
+    val application = context.applicationContext as Application
+    // Create the LoginViewModel using the factory
+    val viewModel: LoginViewModel = viewModel(factory = LoginViewModelFactory(application))
+    Body({}, viewModel)
 
 }
 
@@ -69,8 +77,7 @@ fun Etiquetas(navigateTo: (Any) -> Unit, viewModel: LoginViewModel) {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = if (uiState.vip) Color.Yellow else Color.Green)
-                .padding(20.dp)
-            , horizontalAlignment = Alignment.CenterHorizontally
+                .padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(text = uiState.email.toString(), fontSize = 25.sp)
             Spacer(modifier = Modifier.height(20.dp))
@@ -87,8 +94,7 @@ fun Botones(navigateTo: (Any) -> Unit, viewModel: LoginViewModel) {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = Color.Red)
-                .padding(20.dp)
-            , horizontalAlignment = Alignment.CenterHorizontally
+                .padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(onClick = { navigateTo(Home) }) {
                 Text(text = "Navegar a la home")
