@@ -8,6 +8,9 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.0"
 composeBom = "2024.04.01"
+room = "2.6.1" # Define la versión de Room
+roomVersion = "2.6.1"
+privacysandbox = "1.0.0-alpha11"
 
 #/*Serialization*/
 kotlinxSerialization = "1.6.3"
@@ -40,6 +43,29 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
+
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-rxjava2 = { group = "androidx.room", name = "room-rxjava2", version.ref = "room" }
+androidx-room-rxjava3 = { group = "androidx.room", name = "room-rxjava3", version.ref = "room" }
+androidx-room-guava = { group = "androidx.room", name = "room-guava", version.ref = "room" }
+androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
+androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "room" }
+
+
+
+
+androidx-privacysandbox-tools = { group = "androidx.privacysandbox.tools", name = "tools", version.ref = "privacysandbox" }
+androidx-privacysandbox-tools-apicompiler = { group = "androidx.privacysandbox.tools", name = "tools-apicompiler", version.ref = "privacysandbox" }
+androidx-privacysandbox-tools-apigenerator = { group = "androidx.privacysandbox.tools", name = "tools-apigenerator", version.ref = "privacysandbox" }
+androidx-privacysandbox-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-core", version.ref = "privacysandbox" }
+androidx-privacysandbox-tools-testing = { group = "androidx.privacysandbox.tools", name = "tools-testing", version.ref = "privacysandbox" }
+androidx-privacysandbox-tools-apipackager = { group = "androidx.privacysandbox.tools", name = "tools-apipackager", version.ref = "privacysandbox" }
+
+
+
+
 #/*Serialization*/
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 #/*Serialization*/
@@ -58,7 +84,7 @@ converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
+ksp = { id = "com.google.devtools.ksp", version = "1.9.20-1.0.14" } # Asegúrate de usar la vers
 #/*Serialization*/
 jetbrainsKotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 #/*Serialization*/

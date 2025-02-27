@@ -5,6 +5,7 @@ plugins {
     /*Serialization*/
     alias(libs.plugins.jetbrainsKotlinSerialization)
     /*Serialization*/
+    id("com.google.devtools.ksp") // Aplica el plugin de KSP
 }
 
 android {
@@ -53,6 +54,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -72,4 +75,26 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
     /*retrofit2*/
+
+    // Room dependencies
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler) // Usa KSP para el compilador de Room
+    implementation(libs.androidx.room.ktx) // Room con soporte para corrutinas
+    implementation(libs.androidx.room.rxjava2) // Soporte para RxJava2 (opcional)
+    implementation(libs.androidx.room.rxjava3) // Soporte para RxJava3 (opcional)
+    implementation(libs.androidx.room.guava) // Soporte para Guava (opcional)
+    testImplementation(libs.androidx.room.testing) // Helpers para pruebas
+    implementation(libs.androidx.room.paging) // Integración con Paging 3 (opcional)
+
+
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.rxjava3)
+
+    implementation(libs.androidx.privacysandbox.tools)
+    implementation(libs.androidx.privacysandbox.tools.apicompiler)
+    implementation(libs.androidx.privacysandbox.tools.apigenerator)
+    implementation(libs.androidx.privacysandbox.tools.core)
+    //implementation(libs.androidx.privacysandbox.tools.testing)
+    implementation(libs.androidx.privacysandbox.tools.apipackager)
+
 }
