@@ -18,3 +18,5 @@ object Login
 @Serializable
 object Detail
 
+@Serializable
+object AddUser
