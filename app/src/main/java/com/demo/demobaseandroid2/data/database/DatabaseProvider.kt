@@ -1,21 +1,16 @@
-//package com.demo.demobaseandroid2.data.database
 package com.demo.demobaseandroid2.data.database
 
 import android.content.Context
-import androidx.room.Room
+import com.demo.demobaseandroid2.data.database.AppDatabase
 
 object DatabaseProvider {
-    private var instance: AppDatabase? = null
+    private var database: AppDatabase? = null
 
     fun getDatabase(context: Context): AppDatabase {
-        return instance ?: synchronized(this) {
-            val newInstance = Room.databaseBuilder(
-                context.applicationContext,
-                AppDatabase::class.java,
-                "app_database"
-            ).build()
-            instance = newInstance
-            newInstance
+        return database ?: synchronized(this) {
+            val instance = AppDatabase.getDatabase(context)
+            database = instance
+            instance
         }
     }
 }

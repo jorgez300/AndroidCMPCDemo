@@ -2,10 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    /*Serialization*/
-    alias(libs.plugins.jetbrainsKotlinSerialization)
-    /*Serialization*/
-    id("com.google.devtools.ksp") // Aplica el plugin de KSP
+    alias(libs.plugins.jetbrainsKotlinSerialization) // Serialization
+    id("com.google.devtools.ksp") // Plugin de KSP para Room
 }
 
 android {
@@ -44,7 +42,7 @@ android {
 }
 
 dependencies {
-
+    // Dependencias básicas de Android y Compose
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -54,8 +52,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-
-
+    // Dependencias de pruebas
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -63,38 +60,31 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    /*Serialization*/
-    implementation(libs.kotlinx.serialization.json)
-    /*Serialization*/
-    /*Navigation*/
-    implementation(libs.androidx.navigation.compose)
-    /*Navigation*/
 
-    /*retrofit2*/
+    // Serialization
+    implementation(libs.kotlinx.serialization.json)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
-    /*retrofit2*/
 
-    // Room dependencies
+    // Room
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler) // Usa KSP para el compilador de Room
     implementation(libs.androidx.room.ktx) // Room con soporte para corrutinas
-    implementation(libs.androidx.room.rxjava2) // Soporte para RxJava2 (opcional)
-    implementation(libs.androidx.room.rxjava3) // Soporte para RxJava3 (opcional)
-    implementation(libs.androidx.room.guava) // Soporte para Guava (opcional)
     testImplementation(libs.androidx.room.testing) // Helpers para pruebas
-    implementation(libs.androidx.room.paging) // Integración con Paging 3 (opcional)
 
+    // Corrutinas
+    implementation(libs.kotlinx.coroutines.android)
 
-    implementation(libs.androidx.room.ktx)
-    implementation(libs.androidx.room.rxjava3)
-
+    // Privacy Sandbox (opcional, si lo necesitas)
     implementation(libs.androidx.privacysandbox.tools)
     implementation(libs.androidx.privacysandbox.tools.apicompiler)
     implementation(libs.androidx.privacysandbox.tools.apigenerator)
     implementation(libs.androidx.privacysandbox.tools.core)
-    //implementation(libs.androidx.privacysandbox.tools.testing)
     implementation(libs.androidx.privacysandbox.tools.apipackager)
-
 }
