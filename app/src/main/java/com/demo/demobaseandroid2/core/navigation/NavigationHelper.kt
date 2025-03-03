@@ -1,11 +1,16 @@
 package com.demo.demobaseandroid2.core.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.demo.demobaseandroid2.data.database.DatabaseProvider
+import com.demo.demobaseandroid2.data.repository.AppConfigRepository
 import com.demo.demobaseandroid2.screens.adduser.AddUserScreen
+import com.demo.demobaseandroid2.screens.appconfig.AppConfigScreen
 import com.demo.demobaseandroid2.screens.detail.DetailScreen
 import com.demo.demobaseandroid2.screens.detail.DetailViewModel
 import com.demo.demobaseandroid2.screens.home.HomeScreen
@@ -17,6 +22,8 @@ import com.demo.demobaseandroid2.screens.setting.SettingScreen
 @Composable
 fun NavigationHelper() {
     val navController = rememberNavController()
+    val context = LocalContext.current
+
     NavHost(navController = navController, startDestination = Login) {
         composable<Home> {
             HomeScreen { screen -> navigateTo(screen, navController) }
@@ -47,6 +54,19 @@ fun NavigationHelper() {
             AddUserScreen()
 
         }
+
+        composable<AppConfig> {
+            val appConfigRepository = remember {
+                AppConfigRepository(DatabaseProvider.getDatabase(context).appConfigDao())
+            }
+            AppConfigScreen(repository = appConfigRepository)
+        }
+
+
+//        composable<AppConfig> {
+//
+//            AddUserScreen()
+//        }
     }
 
 }

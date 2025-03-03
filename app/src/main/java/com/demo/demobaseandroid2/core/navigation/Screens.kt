@@ -20,3 +20,6 @@ object Detail
 
 @Serializable
 object AddUser
+
+@Serializable
+object AppConfig

@@ -27,6 +27,7 @@ import com.demo.demobaseandroid2.core.navigation.AddUser
 import com.demo.demobaseandroid2.core.navigation.Detail
 import com.demo.demobaseandroid2.core.navigation.Home
 import com.demo.demobaseandroid2.core.navigation.Setting
+import com.demo.demobaseandroid2.core.navigation.AppConfig
 import com.demo.demobaseandroid2.screens.adduser.AddUserScreen
 
 
@@ -102,7 +103,10 @@ fun Botones(navigateTo: (Any) -> Unit, viewModel: LoginViewModel) {
                 Text(text = "Navegar a Detail")
             }
             Button(onClick = { navigateTo(AddUser) }) {
-                Text(text = "Add User")
+                Text(text = "Usuarios")
+            }
+            Button(onClick = { navigateTo(AppConfig) }) {
+                Text(text = "Configuraciones")
             }
 
         }
