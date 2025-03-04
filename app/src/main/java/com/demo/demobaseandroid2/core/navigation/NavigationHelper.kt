@@ -11,6 +11,7 @@ import com.demo.demobaseandroid2.data.database.DatabaseProvider
 import com.demo.demobaseandroid2.data.repository.AppConfigRepository
 import com.demo.demobaseandroid2.screens.adduser.AddUserScreen
 import com.demo.demobaseandroid2.screens.appconfig.AppConfigScreen
+import com.demo.demobaseandroid2.screens.convectorpt.ConvectorPTScreen
 import com.demo.demobaseandroid2.screens.detail.DetailScreen
 import com.demo.demobaseandroid2.screens.detail.DetailViewModel
 import com.demo.demobaseandroid2.screens.home.HomeScreen
@@ -18,12 +19,12 @@ import com.demo.demobaseandroid2.screens.login.LoginScreen
 import com.demo.demobaseandroid2.screens.login.LoginViewModel
 import com.demo.demobaseandroid2.screens.setting.SettingScreen
 
-//ss
 @Composable
 fun NavigationHelper() {
     val navController = rememberNavController()
     val context = LocalContext.current
 
+    // Usamos los objetos serializables para definir las rutas
     NavHost(navController = navController, startDestination = Login) {
         composable<Home> {
             HomeScreen { screen -> navigateTo(screen, navController) }
@@ -34,7 +35,6 @@ fun NavigationHelper() {
                 navigateTo = { screen -> navigateTo(screen, navController) },
                 viewModel = LoginViewModel()
             )
-
         }
 
         composable<Detail> {
@@ -42,7 +42,6 @@ fun NavigationHelper() {
                 navigateTo = { screen -> navigateTo(screen, navController) },
                 viewModel = DetailViewModel()
             )
-
         }
 
         composable<Setting> {
@@ -50,9 +49,7 @@ fun NavigationHelper() {
         }
 
         composable<AddUser> {
-
             AddUserScreen()
-
         }
 
         composable<AppConfig> {
@@ -62,18 +59,14 @@ fun NavigationHelper() {
             AppConfigScreen(repository = appConfigRepository)
         }
 
-
-//        composable<AppConfig> {
-//
-//            AddUserScreen()
-//        }
+        composable<ConvectorPT> {
+            ConvectorPTScreen { screen -> navigateTo(screen, navController) }
+        }
     }
-
 }
 
-
+// Función para manejar la navegación
 fun navigateTo(screen: Any, navController: NavHostController) {
-
     when (screen) {
         is Login -> {
             navController.navigate(screen) {
@@ -86,5 +79,4 @@ fun navigateTo(screen: Any, navController: NavHostController) {
         is Back -> navController.popBackStack()
         else -> navController.navigate(screen)
     }
-
 }

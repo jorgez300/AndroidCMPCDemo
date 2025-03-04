@@ -23,3 +23,6 @@ object AddUser
 
 @Serializable
 object AppConfig
+
+@Serializable
+object ConvectorPT
