@@ -26,3 +26,9 @@ object AppConfig
 
 @Serializable
 object ConvectorPT
+
+@Serializable
+object ConvectorMain
+
+@Serializable
+object ProgramaDia

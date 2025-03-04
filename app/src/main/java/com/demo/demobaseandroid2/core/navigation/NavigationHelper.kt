@@ -1,5 +1,6 @@
 package com.demo.demobaseandroid2.core.navigation
 
+import ConvectorMainScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
@@ -18,6 +19,8 @@ import com.demo.demobaseandroid2.screens.home.HomeScreen
 import com.demo.demobaseandroid2.screens.login.LoginScreen
 import com.demo.demobaseandroid2.screens.login.LoginViewModel
 import com.demo.demobaseandroid2.screens.setting.SettingScreen
+
+//import com.demo.demobaseandroid2.screens.convectorpt.ConvectorMainScreen
 
 @Composable
 fun NavigationHelper() {
@@ -62,6 +65,11 @@ fun NavigationHelper() {
         composable<ConvectorPT> {
             ConvectorPTScreen { screen -> navigateTo(screen, navController) }
         }
+        composable<ConvectorMain> {
+            ConvectorMainScreen(navController = navController)
+            // ConvectorMainScreen { screen -> navigateTo(screen, navController) }
+        }
+
     }
 }
 

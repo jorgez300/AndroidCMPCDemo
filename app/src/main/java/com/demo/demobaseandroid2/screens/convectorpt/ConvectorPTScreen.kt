@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
+import com.demo.demobaseandroid2.core.navigation.ConvectorPT
 import com.demo.demobaseandroid2.core.navigation.Home
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -101,7 +102,8 @@ fun ConvectorPTScreen(navigateTo: (Any) -> Unit) {
             Button(
                 onClick = {
                     if (patente.text.isNotEmpty()) {
-                        navigateTo(Home) // Navega a la pantalla principal
+                        navigateTo(ConvectorPT)
+                        //navigateTo(Home) // Navega a la pantalla principal
                     }
                 },
                 modifier = Modifier
