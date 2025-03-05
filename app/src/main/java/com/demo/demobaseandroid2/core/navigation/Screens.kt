@@ -18,3 +18,9 @@ object Login
 @Serializable
 object Detail
 
+@Serializable
+object Camara
+
+@Serializable
+object Location
+

@@ -5,19 +5,35 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.demo.demobaseandroid2.MainActivity
+import com.demo.demobaseandroid2.domain.helper.LocationManager
+import com.demo.demobaseandroid2.screens.camara.CameraScreen
 import com.demo.demobaseandroid2.screens.detail.DetailScreen
 import com.demo.demobaseandroid2.screens.detail.DetailViewModel
+import com.demo.demobaseandroid2.screens.gps.LocationScreen
+import com.demo.demobaseandroid2.screens.gps.LocationViewModel
 import com.demo.demobaseandroid2.screens.home.HomeScreen
 import com.demo.demobaseandroid2.screens.login.LoginScreen
 import com.demo.demobaseandroid2.screens.login.LoginViewModel
 import com.demo.demobaseandroid2.screens.setting.SettingScreen
 
 @Composable
-fun NavigationHelper() {
+fun NavigationHelper(mainActivity: MainActivity) {
     val navController = rememberNavController()
+    val locationManager = LocationManager(mainActivity)
     NavHost(navController = navController, startDestination = Login) {
         composable<Home> {
             HomeScreen { screen -> navigateTo(screen, navController) }
+        }
+
+        composable<Camara> {
+            CameraScreen()
+        }
+
+        composable<Location> {
+            LocationScreen(
+                viewModel = LocationViewModel(locationManager)
+            )
         }
 
         composable<Login> {

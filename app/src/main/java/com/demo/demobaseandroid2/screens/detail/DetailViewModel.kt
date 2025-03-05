@@ -3,34 +3,19 @@ package com.demo.demobaseandroid2.screens.detail
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.demo.demobaseandroid2.domain.client.RetrofitInstance
+import com.demo.demobaseandroid2.domain.model.AuctionData
+import com.demo.demobaseandroid2.domain.model.DetailState
+import com.demo.demobaseandroid2.domain.service.DetailService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-data class AuctionData(
-    val dt: String,
-    val winning_bid_max: Double,
-    val winning_bid_min: Double,
-    val winning_bid_mean: Double,
-    val auction_trading_volume: Double,
-    val auction_lots_count: Int,
-    val all_auctions_lots_count: Int,
-    val auction_name: String,
-    val auction_slug: String
-)
-
-
-data class DetailState(
-    val vip: Boolean = true,
-    val auctionData: List<AuctionData> = emptyList()
-)
 
 class DetailViewModel : ViewModel() {
 
-
+    private val _service = DetailService()
     private val _uiState = MutableStateFlow<DetailState>(DetailState())
     val uiState: StateFlow<DetailState> = _uiState.asStateFlow()
 
@@ -40,13 +25,11 @@ class DetailViewModel : ViewModel() {
 
     private fun fetchData() {
         viewModelScope.launch {
-            val response = RetrofitInstance.api.getData<List<AuctionData>>()
-            if (response.isSuccessful) {
-                Log.d("DetailViewModel", response.isSuccessful.toString())
-                updateState(response.isSuccessful, response.body())
-            } else {
-                // Manejar error
-            }
+            val data = _service.fetchAuctionData()
+
+            Log.d("DetailViewModel", data.toString())
+
+            updateState(true, data)
         }
     }
 
